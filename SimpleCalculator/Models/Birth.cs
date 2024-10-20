@@ -28,17 +28,13 @@ public class Birth
 
         var today = DateTime.Now;
         var age = today.Year - DateOfB.Value.Year;
-        if (DateOfB.Value.Date > today.AddYears(age) )
+        if (today < today.AddYears(age) )
         {
             --age;
         }
 
         return age;
-
-
-
-
-
+        
     }
     
     
