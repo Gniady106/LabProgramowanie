@@ -25,6 +25,10 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Calculate\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Birth\BirthForm.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Birth\BirthResult.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Calculator\Form.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Calculator\Result.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
