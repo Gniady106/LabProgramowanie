@@ -22,11 +22,24 @@ public class ContactController : Controller
 
     private static int currentId = 3;
 
+    public IActionResult Delete(ContactModel model)
+    {
+        _contacts.Remove();
+        return View("Index", _contacts);
+    }
+    
+    
+    
+    
+    
+
     [HttpGet]
     public IActionResult Add()
     {
         return View();
     }
+    
+    
 
 
     [HttpPost]
