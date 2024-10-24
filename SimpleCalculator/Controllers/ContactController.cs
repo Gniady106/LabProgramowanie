@@ -10,7 +10,7 @@ public class ContactController : Controller
     {
         return View(_contacts);
     }
-
+    
     private static Dictionary<int, ContactModel> _contacts = new()
     {
         
@@ -22,10 +22,52 @@ public class ContactController : Controller
 
     private static int currentId = 3;
 
-    public IActionResult Delete(ContactModel model)
+    //Usunięcie odpowieniego wpisu
+    public IActionResult Delete(int id)
     {
-        _contacts.Remove();
+        _contacts.Remove(id);
+        
         return View("Index", _contacts);
+    }
+
+    public IActionResult Details()
+    {
+        return View("Add");
+    }
+    
+    
+    //Edit form 
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        if (_contacts.Keys.Contains(id))
+        {
+            var contact = _contacts[id];
+            return View(contact);
+        }
+        
+        else
+        {
+            return NotFound();
+        }
+        
+    }
+    
+    // Save przy edicie
+    [HttpPost]
+    public IActionResult Save(ContactModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View("Edit", model);
+        }
+        
+        
+        _contacts[model.Id] = model;
+        
+       
+
+        return RedirectToAction("Index");
     }
     
     
@@ -40,7 +82,7 @@ public class ContactController : Controller
     }
     
     
-
+    
 
     [HttpPost]
     public IActionResult Add(ContactModel model)

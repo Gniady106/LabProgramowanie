@@ -30,15 +30,18 @@
                         </td>
             <td>
                 <div>
-                    <a class="btn btn-danger" >
+                    <a class="btn btn-primary" asp-action="Edit" asp-controller="Contact" asp-route-id="@item.Value.Id" >
                         Edycja
                     </a>
-                    <a class="btn btn-info" >
+                    <a class="btn btn-info" asp-action="Details" asp-controller="Contact" asp-route-id="@item.Value.Id">
                         Szczegóły
                     </a>
-                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Contact">
+                    
+                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Contact" asp-route-id="@item.Value.Id">
                         Usuń
                     </a>
+                   
+
                     
                 </div>
             </td>

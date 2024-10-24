@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SimpleCalculator.Models;
@@ -33,7 +34,7 @@ public class ContactModel
     
     
     
-    [Phone]
+    [Phone(ErrorMessage = "Proszę wpisać poprawny numer telefonu.")]
     [RegularExpression("\\d\\d\\d \\d\\d\\d \\d\\d\\d", ErrorMessage = "Wpisz numer wg wzoru: xxx xxx xxx")]
     public string PhoneNum { get; set; }
 }
