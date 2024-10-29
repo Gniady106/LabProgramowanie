@@ -1,0 +1,63 @@
+@model ContactModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+
+
+
+<table class="table" >
+    <thead style="font-weight: bold; font-size: 20px;">
+    <tr>
+        <td>
+            Imię
+        </td>
+        
+        <td>
+            Nazwisko
+        </td>
+        
+        <td>
+            Email
+        </td>
+        
+        <td>
+            Data Urodzenia
+        </td>
+        
+        <td>
+            Nr. Telfonu
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+            <td>
+                @Model.Name
+            </td>
+            
+            <td>
+                @Model.LastName
+            </td>
+            
+            <td>
+                @Model.Email
+            </td>
+            
+            <td>
+                @Model.BirthDate
+            </td>
+            
+            <td>
+                @Model.PhoneNum
+            </td>
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Wstecz</a>
+
+        
+        
+        
+    

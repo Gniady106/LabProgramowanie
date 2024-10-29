@@ -14,9 +14,9 @@ public class ContactController : Controller
     private static Dictionary<int, ContactModel> _contacts = new()
     {
         
-        {1, new ContactModel(){Id = 1,Name = "Michal", LastName = "Skrzynka", Email = "michal@glkkkk.pl",BirthDate = new DateTime(2004,11,21), PhoneNum = "999 999 999"}},
-        {2, new ContactModel(){Id = 2,Name = "Kamil", LastName = "Krawiec", Email = "michal@kkkkk.pl",BirthDate = new DateTime(2002,12,22), PhoneNum = "998 998 998"}},
-        {3, new ContactModel(){Id = 3,Name = "Jakob", LastName = "Kowal", Email = "michal@jkkkkk.pl",BirthDate = new DateTime(2004,10,23), PhoneNum = "997 997 997"}}
+        {1, new ContactModel(){Id = 1,Name = "Michal", LastName = "Skrzynka", Email = "michal@glkkkk.pl",BirthDate = new DateOnly(2004,11,21), PhoneNum = "999 999 999"}},
+        {2, new ContactModel(){Id = 2,Name = "Kamil", LastName = "Krawiec", Email = "michal@kkkkk.pl",BirthDate = new DateOnly(2002,12,22), PhoneNum = "998 998 998"}},
+        {3, new ContactModel(){Id = 3,Name = "Jakob", LastName = "Kowal", Email = "michal@jkkkkk.pl",BirthDate = new DateOnly(2004,10,23), PhoneNum = "997 997 997"}}
         
     };
 
@@ -30,9 +30,15 @@ public class ContactController : Controller
         return View("Index", _contacts);
     }
 
-    public IActionResult Details()
+    public IActionResult Details(int id)
     {
-        return View("Add");
+        if (_contacts.Keys.Contains(id))
+        {
+            var contact = _contacts[id];
+            return View(contact);
+        }
+
+        return NotFound();
     }
     
     
