@@ -31,6 +31,9 @@
         <td>
             Nr. Telfonu
         </td>
+         <td>
+                    Kategoria
+                </td>
     </tr>
     </thead>
     <tbody>
@@ -50,14 +53,16 @@
                 @Model.BirthDate
             </td>
             
-            <td>
-                @Model.PhoneNum
-            </td>
+    <td>
+        @Model.PhoneNum
+    </td>
+    <td>
+        @Model.Category.GetDisplayName()
+    </td>
     </tbody>
 </table>
 <a asp-action="Index" class="btn btn-secondary">Wstecz</a>
 
-        
         
         
     

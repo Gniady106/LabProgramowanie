@@ -5,29 +5,30 @@ namespace SimpleCalculator.Controllers;
 
 public class ContactController : Controller
 {
+    
     // Lista kontaktów
     public IActionResult Index()
     {
-        return View(_contacts);
+        return View(_contacts.Values.ToList());
     }
     
-    private static Dictionary<int, ContactModel> _contacts = new()
+    private Dictionary<int, ContactModel> _contacts = new()
     {
         
-        {1, new ContactModel(){Id = 1,Name = "Michal", LastName = "Skrzynka", Email = "michal@glkkkk.pl",BirthDate = new DateOnly(2004,11,21), PhoneNum = "999 999 999"}},
-        {2, new ContactModel(){Id = 2,Name = "Kamil", LastName = "Krawiec", Email = "michal@kkkkk.pl",BirthDate = new DateOnly(2002,12,22), PhoneNum = "998 998 998"}},
-        {3, new ContactModel(){Id = 3,Name = "Jakob", LastName = "Kowal", Email = "michal@jkkkkk.pl",BirthDate = new DateOnly(2004,10,23), PhoneNum = "997 997 997"}}
+        {1, new ContactModel(){Id = 1,Category = Category.Buisness, Name = "Michal", LastName = "Skrzynka", Email = "michal@glkkkk.pl",BirthDate = new DateOnly(2004,11,21), PhoneNum = "999 999 999"}},
+        {2, new ContactModel(){Id = 2,Name = "Kamil", Category = Category.Buisness, LastName = "Krawiec", Email = "michal@kkkkk.pl",BirthDate = new DateOnly(2002,12,22), PhoneNum = "998 998 998"}},
+        {3, new ContactModel(){Id = 3,Name = "Jakob", Category = Category.Buisness,LastName = "Kowal", Email = "michal@jkkkkk.pl",BirthDate = new DateOnly(2004,10,23), PhoneNum = "997 997 997"}}
         
     };
 
-    private static int currentId = 3;
+    private  int currentId = 3;
 
     //Usunięcie odpowieniego wpisu
     public IActionResult Delete(int id)
     {
         _contacts.Remove(id);
         
-        return View("Index", _contacts);
+        return View("Index", _contacts.Values.ToList());
     }
 
     public IActionResult Details(int id)
@@ -100,7 +101,7 @@ public class ContactController : Controller
 
         model.Id = ++currentId;
         _contacts.Add(model.Id, model);
-        return View("Index", _contacts);
+        return View("Index", _contacts.Values.ToList());
     }
     
     
