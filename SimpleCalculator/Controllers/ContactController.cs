@@ -1,81 +1,77 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleCalculator.Models;
+using SimpleCalculator.Models.Services;
 
 namespace SimpleCalculator.Controllers;
 
 public class ContactController : Controller
 {
+    private readonly IContactService _contactService;
+    private readonly IDataTimeProvider _timeProvider;
     
-    // Lista kontaktów
+   
+  
+    public ContactController(IContactService contactService, IDataTimeProvider timeProvider)
+    {
+        _contactService = contactService;
+        _timeProvider = timeProvider;
+    }
+   
+    
     public IActionResult Index()
     {
-        return View(_contacts.Values.ToList());
+        return View(_contactService.GetAll());
     }
     
-    private Dictionary<int, ContactModel> _contacts = new()
-    {
-        
-        {1, new ContactModel(){Id = 1,Category = Category.Buisness, Name = "Michal", LastName = "Skrzynka", Email = "michal@glkkkk.pl",BirthDate = new DateOnly(2004,11,21), PhoneNum = "999 999 999"}},
-        {2, new ContactModel(){Id = 2,Name = "Kamil", Category = Category.Buisness, LastName = "Krawiec", Email = "michal@kkkkk.pl",BirthDate = new DateOnly(2002,12,22), PhoneNum = "998 998 998"}},
-        {3, new ContactModel(){Id = 3,Name = "Jakob", Category = Category.Buisness,LastName = "Kowal", Email = "michal@jkkkkk.pl",BirthDate = new DateOnly(2004,10,23), PhoneNum = "997 997 997"}}
-        
-    };
-
-    private  int currentId = 3;
+    
 
     //Usunięcie odpowieniego wpisu
     public IActionResult Delete(int id)
     {
-        _contacts.Remove(id);
+        _contactService.Delete(id);
         
-        return View("Index", _contacts.Values.ToList());
+        return View("Index", _contactService.GetAll());
     }
 
     public IActionResult Details(int id)
     {
-        if (_contacts.Keys.Contains(id))
-        {
-            var contact = _contacts[id];
+     
+            var contact = _contactService.GetById(id);
             return View(contact);
-        }
+        
+    
+        
+    }
+    
+    
+    
+     [HttpGet]
+     public IActionResult Edit(int id)
+     {
+                
+             var contact = _contactService.GetById(id);
+             return View(contact);
+             
+         
+     }
 
-        return NotFound();
-    }
-    
-    
-    //Edit form 
-    [HttpGet]
-    public IActionResult Edit(int id)
-    {
-        if (_contacts.Keys.Contains(id))
-        {
-            var contact = _contacts[id];
-            return View(contact);
-        }
-        
-        else
-        {
-            return NotFound();
-        }
-        
-    }
-    
-    // Save przy edicie
-    [HttpPost]
-    public IActionResult Save(ContactModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View("Edit", model);
-        }
-        
-        
-        _contacts[model.Id] = model;
-        
-       
 
-        return RedirectToAction("Index");
-    }
+     [HttpPost]
+     public IActionResult Edit(ContactModel model)
+     {
+         if (ModelState.IsValid)
+         {
+             _contactService.Update(model);
+             return RedirectToAction("Index");
+         }
+         else
+         {
+             return View(model);
+         }
+         
+     }
+    
+    
     
     
     
@@ -83,7 +79,7 @@ public class ContactController : Controller
     
 
     [HttpGet]
-    public IActionResult Add()
+    public IActionResult Create()
     {
         return View();
     }
@@ -92,16 +88,17 @@ public class ContactController : Controller
     
 
     [HttpPost]
-    public IActionResult Add(ContactModel model)
+    public IActionResult Create(ContactModel model)
     {
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
+        {
+            _contactService.Add(model);
+            return RedirectToAction("Index");
+        }
+        else
         {
             return View(model);
         }
-
-        model.Id = ++currentId;
-        _contacts.Add(model.Id, model);
-        return View("Index", _contacts.Values.ToList());
     }
     
     

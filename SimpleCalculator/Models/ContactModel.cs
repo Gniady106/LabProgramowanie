@@ -9,6 +9,8 @@ public class ContactModel
     
     [HiddenInput]
     public int Id { get; set; }
+    [HiddenInput] 
+    public DateTime Created { get; set; }
     
     [Required(ErrorMessage = "Proszę wpisać swoje imię")]
     [MaxLength(length:20, ErrorMessage = "Imię nie może być dłuższe niż 20 znaków")]

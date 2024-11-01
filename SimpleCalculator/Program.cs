@@ -1,7 +1,16 @@
+using SimpleCalculator.Models.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IContactService, MemoryContactService>();
+builder.Services.AddSingleton<IDataTimeProvider, MemoryContactService>();
 
 var app = builder.Build();
 

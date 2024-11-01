@@ -8,28 +8,28 @@
 <h2>Edycja kontaktu</h2>
 <form asp-action="Edit" method="post">
     <input asp-for="Id"/>
-    <div class="form-group">
-        <label for="Name"></label>
+    <div class="mb-3">
+        <label for="Name" asp-for="Name"></label>
         <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required/>
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label for="LastName"></label>
+    <div class="mb-3">
+        <label for="LastName" asp-for="LastName"></label>
         <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName" required/>
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label for="Email"></label>
+    <div class="mb-3">
+        <label for="Email" asp-for="Email"></label>
         <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required/>
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label for="PhoneNumber"></label>
+    <div class="mb-3">
+        <label for="PhoneNumber" asp-for="PhoneNum"></label>
         <input type="text" class="form-control" id="PhoneNumber" name="PhoneNum" value="@Model.PhoneNum"/>
         <span asp-validation-for="PhoneNum" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label for="BirthDate"></label>
+    <div class="mb-3">
+        <label for="BirthDate" asp-for="Email"></label>
         <input type="date" class="form-control" id="BirthDate" name="BirthDate" value="@Model.BirthDate.ToString("yyyy-MM-dd")"/>
         <span asp-validation-for="BirthDate" class="text-danger"></span>
     </div>
@@ -43,6 +43,6 @@
 
     <input type="hidden" name="Id" value="@Model.Id"/>
 
-    <button type="submit" class="btn btn-success" asp-action="Save">Zapisz</button>
+    <button type="submit" class="btn btn-success">Save</button>
     <a asp-action="Index" asp-controller="Contact" class="btn btn-secondary">Anuluj</a>
 </form>

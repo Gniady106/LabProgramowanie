@@ -5,64 +5,100 @@
     Layout = "_Layout";
 }
 
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
+</head>
+<div style="display: flex; justify-content: center; ">
+    <div style="border: 1px; display: block; padding: 10px; border-radius: 15px; background: rgb(217,217,217)">
 
+        <h2 style=" font-size: 23px; font-family:  'Outfit',sans-serif; font-weight: 700">Informacje o kontakcie</h2>
+        <div style="border: 1px; border-radius: 10px; padding: 5px; background-color: rgb(242,242,242);color: rgb(38,38,38)">
+            <span style="font-size: 15px; display: block; font-family:  'Outfit',sans-serif; font-weight: 300">Imię</span>
+            <span style="font-size: 20px ; font-family: 'Outfit', sans-serif; font-weight: 700; display: block">@Model.Name</span>
+        </div>
+        <div style="border: 1px; border-radius: 10px; padding: 5px; margin-top: 10px; background-color: rgb(242,242,242); color: rgb(38,38,38)">
+            <span style="font-size: 15px; display: block; font-family: 'Outfit', sans-serif">Nazwisko</span>
+            <span style="font-size: 20px ; font-family: 'Outfit', sans-serif; font-weight: 700; display: block">@Model.LastName</span>
+        </div>
+        <div style="border: 1px; border-radius: 10px; padding: 5px; margin-top: 10px; background-color: rgb(242,242,242); color: rgb(38,38,38)">
+            <span style="font-size: 15px; display: block; font-family: 'Outfit', sans-serif; font-weight: 300">Email</span>
+            <span style="font-size: 20px ; font-family: 'Outfit', sans-serif; font-weight: 700; display: block">@Model.Email</span>
+        </div>
+        <div style="border: 1px; border-radius: 10px; padding: 5px; margin-top: 10px; background-color: rgb(242,242,242); color: rgb(38,38,38)">
+            <span style="font-size: 15px; display: block;font-family: 'Outfit', sans-serif; font-weight: 300">Data urodzenia</span>
+            <span style="font-size: 20px ; font-family: 'Outfit', sans-serif; font-weight: 700; display: block">@Model.BirthDate</span>
+        </div>
+        <div style="border: 1px; border-radius: 10px; padding: 5px; margin-top: 10px; background-color: rgb(242,242,242); color: rgb(38,38,38)">
+            <span style="font-size: 15px; display: block; font-family: 'Outfit', sans-serif; font-weight: 300">Numer telefonu</span>
+            <span style="font-size: 20px ; font-weight: bold; display: block">@Model.PhoneNum</span>
+        </div>
+        <div style="border: 1px; border-radius: 10px; padding: 5px; margin-top: 10px; background-color: rgb(242,242,242); color: rgb(38,38,38)">
+                    <span style="font-size: 15px; display: block;font-family: 'Outfit', sans-serif; font-weight: 300">Kategoria</span>
+                                <span style="font-size: 20px ; display: block;font-family: 'Outfit', sans-serif; font-weight: 700">@Model.Category.GetDisplayName()</span>
+                    </div>
+        <div style="border: 1px; border-radius: 10px;  margin-top: 10px; background-color: rgb(242,242,242); font-family: 'Outfit', sans-serif; font-weight: 300; text-align: center; color: rgb(38,38,38)">
+            <p style="padding: 5px">Data utworzenia: @Model.Created</p>
+            </div>
+        <a asp-action="Index" class="btn btn-secondary" style="border-radius: 10px; display: flex; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 400">Wstecz</a>
+    </div>
+</div>
 
-
-<table class="table" >
-    <thead style="font-weight: bold; font-size: 20px;">
-    <tr>
-        <td>
-            Imię
-        </td>
-        
-        <td>
-            Nazwisko
-        </td>
-        
-        <td>
-            Email
-        </td>
-        
-        <td>
-            Data Urodzenia
-        </td>
-        
-        <td>
-            Nr. Telfonu
-        </td>
-         <td>
-                    Kategoria
-                </td>
-    </tr>
-    </thead>
-    <tbody>
-            <td>
-                @Model.Name
-            </td>
-            
-            <td>
-                @Model.LastName
-            </td>
-            
-            <td>
-                @Model.Email
-            </td>
-            
-            <td>
-                @Model.BirthDate
-            </td>
-            
-    <td>
-        @Model.PhoneNum
-    </td>
-    <td>
-        @Model.Category.GetDisplayName()
-    </td>
-    </tbody>
-</table>
-<a asp-action="Index" class="btn btn-secondary">Wstecz</a>
-
-        
+@* *@
+@* <table class="table" > *@
+@*     <thead style="font-weight: bold; font-size: 20px;"> *@
+@*     <tr> *@
+@*         <td> *@
+@*             Imię *@
+@*         </td> *@
+@* *@
+@*         <td> *@
+@*             Nazwisko *@
+@*         </td> *@
+@* *@
+@*         <td> *@
+@*             Email *@
+@*         </td> *@
+@* *@
+@*         <td> *@
+@*             Data Urodzenia *@
+@*         </td> *@
+@* *@
+@*         <td> *@
+@*             Nr. Telfonu *@
+@*         </td> *@
+@*          <td> *@
+@*                     Kategoria *@
+@*                 </td> *@
+@*     </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*             <td> *@
+@*                 @Model.Name *@
+@*             </td> *@
+@* *@
+@*             <td> *@
+@*                 @Model.LastName *@
+@*             </td> *@
+@* *@
+@*             <td> *@
+@*                 @Model.Email *@
+@*             </td> *@
+@* *@
+@*             <td> *@
+@*                 @Model.BirthDate *@
+@*             </td> *@
+@* *@
+@*     <td> *@
+@*         @Model.PhoneNum *@
+@*     </td> *@
+@*     <td> *@
+@*         @Model.Category.GetDisplayName() *@
+@*     </td> *@
+@*     </tbody> *@
+@* </table> *@
+@* *@
+@*          *@
         
     
