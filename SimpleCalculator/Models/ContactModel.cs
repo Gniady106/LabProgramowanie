@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SimpleCalculator.Models;
 
@@ -45,6 +47,15 @@ public class ContactModel
     
     [Display(Name = "Numer telefonu")]
     [Phone(ErrorMessage = "Proszę wpisać poprawny numer telefonu.")]
-    [RegularExpression("\\d\\d\\d \\d\\d\\d \\d\\d\\d", ErrorMessage = "Wpisz numer wg wzoru: xxx xxx xxx")]
+    
     public string PhoneNum { get; set; }
+
+
+    public int OrganizationId { get; set; }
+    public OrganizationEntity? Organization { get; set; }
+
+    [ValidateNever]
+    public List<SelectListItem>  Organizations { get; set; }
+    
+    
 }

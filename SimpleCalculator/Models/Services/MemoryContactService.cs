@@ -11,16 +11,15 @@ public class MemoryContactService : IContactService, IDataTimeProvider
         
     };
 
+
+    private int currentId = 3;
     
-    
-    
-    public int Add(ContactModel item)
+    public void Add(ContactModel item)
     {
-        int id = _items.Keys.Count != 0 ? _items.Keys.Max() : 0;
-        item.Id = id + 1;
+        
+        item.Id = currentId + 1;
         item.Created = CurrentTime();
         _items.Add(item.Id, item);
-        return item.Id;
     }
 
     public void Update(ContactModel item)
@@ -44,6 +43,11 @@ public class MemoryContactService : IContactService, IDataTimeProvider
     public ContactModel? GetById(int id)
     {
         return _items[id];
+    }
+
+    public List<OrganizationEntity> GetOrganizations()
+    {
+        throw new NotImplementedException();
     }
 
 

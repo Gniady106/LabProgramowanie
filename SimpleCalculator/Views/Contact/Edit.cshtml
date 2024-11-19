@@ -33,6 +33,11 @@
         <input type="date" class="form-control" id="BirthDate" name="BirthDate" value="@Model.BirthDate.ToString("yyyy-MM-dd")"/>
         <span asp-validation-for="BirthDate" class="text-danger"></span>
     </div>
+     <div class="mb-3">
+                        <label class="form-label" asp-for="OrganizationId">Organizacja</label>
+                        <select asp-for="OrganizationId " asp-items="@Model.Organizations"  ></select>
+                        <span asp-validation-for="OrganizationId" class="text-danger"></span>
+                    </div>
     <div class="mb-3">
         <label class="form-label" asp-for="Category"></label>
         <select class="form-control" asp-for="Category" asp-items="@Html.GetEnumSelectList<Category>()">

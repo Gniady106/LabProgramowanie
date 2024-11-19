@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SimpleCalculator.Models;
 using SimpleCalculator.Models.Services;
 
@@ -49,12 +51,17 @@ public class ContactController : Controller
      public IActionResult Edit(int id)
      {
                 
+         
              var contact = _contactService.GetById(id);
+             contact.Organizations = _contactService.GetOrganizations()
+                 .Select(o => new SelectListItem { Value = o.Id.ToString(), Text = o.Name }).ToList();
+             
              return View(contact);
              
          
      }
 
+    
 
      [HttpPost]
      public IActionResult Edit(ContactModel model)
@@ -79,21 +86,33 @@ public class ContactController : Controller
     
 
     [HttpGet]
+    [Authorize]
     public IActionResult Create()
     {
-        return View();
+        var model = new ContactModel();
+        model.Organizations = _contactService.GetOrganizations()
+            .Select(i => new SelectListItem()
+            {
+                Value = i.Id.ToString(),
+                Text = i.Name,
+                Selected = i.Id == 1
+
+            }).ToList();
+        
+        return View(model);
     }
     
     
     
 
     [HttpPost]
+    [Authorize]
     public IActionResult Create(ContactModel model)
     {
         if (ModelState.IsValid)
         {
             _contactService.Add(model);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         else
         {

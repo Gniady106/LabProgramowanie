@@ -10,11 +10,10 @@ public class EFContactService : IContactService
         _context = context;
     }
 
-    public int Add(ContactModel model)
+    public void Add(ContactModel model)
     {
-        var entity = _context.Contacts.Add(ContactMapper.ToEntity(model));
+        _context.Contacts.Add(ContactMapper.ToEntity(model));
         _context.SaveChanges();
-        return entity.Entity.Id;
     }
 
     public void Update(ContactModel model)
@@ -39,5 +38,10 @@ public class EFContactService : IContactService
         var entity = _context.Contacts.Find(id);
         return entity != null ? ContactMapper.FromEntity(entity) : null;
 
+    }
+
+    public List<OrganizationEntity> GetOrganizations()
+    {
+        return _context.Organizations.ToList();
     }
 }

@@ -40,4 +40,17 @@ public class ContactEntity
     
     [Column("phone_num")]
     public string PhoneNum { get; set; }
+
+
+
+
+
+    public int OrganizationId { get; set; }
+
+
+    public OrganizationEntity? Organization { get; set; }
+    
+    
+    
+    
 }
