@@ -16,9 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddSingleton<IDataTimeProvider, MemoryContactService>();
 builder.Services.AddSingleton<IContactService, MemoryContactService>();
-builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddTransient<IContactService, EFContactService>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 
@@ -35,7 +36,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 
     
     
-builder.Services.AddTransient<IContactService, EFContactService>();
 
 
 var app = builder.Build();
